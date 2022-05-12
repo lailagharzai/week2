@@ -15,11 +15,8 @@ pipeline {
         }
         stage('Deploy to s3') {
             steps {
-                sh "aws configure set region $AWS_DEFAULT_REGION" 
-                sh "aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID"  
-                sh "aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY"
-                sh "aws s3 cp www/index.html s3://lailapracticebucket"
-                sh "aws s3 cp www/error.html s3://lailapracticebucket"
+                echo 'Uploading files to S3'
+                sh 'aws s3 cp www/ s3://lailapracticebucket --recursive'
             }
         }
     }
