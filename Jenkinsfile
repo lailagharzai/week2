@@ -15,9 +15,9 @@ pipeline {
         }
         stage('Deploy to s3') {
             steps {
-                sh "aws configure set region 'eu-west-2'" 
-                sh "aws configure set aws_access_key_id 'AKIAR6UCXRSXYY3KTUAL'"  
-                sh "aws configure set aws_secret_access_key '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'"
+                sh "aws configure set region $AWS_DEFAULT_REGION" 
+                sh "aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID"  
+                sh "aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY"
                 sh "aws s3 cp www/index.html s3://lailapracticebucket"
                 sh "aws s3 cp www/error.html s3://lailapracticebucket"
             }
